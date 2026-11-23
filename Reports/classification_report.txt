@@ -1,0 +1,17 @@
+RAILWAY DEFECT DETECTION
+MOBILENETV2 CLASSIFICATION REPORT
+=================================================================
+Evaluation type: Full processed dataset assessment
+Total images: 949
+Accuracy: 91.57%
+
+Class                  Precision      Recall    F1-score   Support
+------------------------------------------------------------------
+Defective                 0.9716      0.8577      0.9111       478
+Non defective             0.8710      0.9745      0.9198       471
+------------------------------------------------------------------
+macro avg                 0.9213      0.9161      0.9155       949
+weighted avg              0.9216      0.9157      0.9154       949
+
+Note: This evaluation uses the full processed dataset.
+It is not an independent test-set evaluation.

@@ -1,0 +1,28 @@
+{
+    "project": "Railway Defect Detection",
+    "dataset_directory": "C:\\Users\\shrey\\Downloads\\RAILWAY_DEFECT_DETECTION\\dataset\\processed",
+    "classes": {
+        "Defective": {
+            "class_name": "Defective",
+            "directory": "C:\\Users\\shrey\\Downloads\\RAILWAY_DEFECT_DETECTION\\dataset\\processed\\Defective",
+            "total_files": 478,
+            "valid_images": 478,
+            "corrupted_images": 0,
+            "unsupported_files": 0
+        },
+        "Non defective": {
+            "class_name": "Non defective",
+            "directory": "C:\\Users\\shrey\\Downloads\\RAILWAY_DEFECT_DETECTION\\dataset\\processed\\Non defective",
+            "total_files": 471,
+            "valid_images": 471,
+            "corrupted_images": 0,
+            "unsupported_files": 0
+        }
+    },
+    "summary": {
+        "total_image_files": 949,
+        "valid_images": 949,
+        "corrupted_images": 0,
+        "unsupported_files": 0
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "project": "Railway Defect Detection",
+    "classes": [
+        "Defective",
+        "Non defective"
+    ],
+    "image_size": [
+        224,
+        224
+    ],
+    "status": "Utility test successful"
+}

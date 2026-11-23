@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Railway Defect Detection System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            color: #1e293b;
+        }
+
+        header {
+            background: #123b63;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .upload-area {
+            padding: 30px;
+            text-align: center;
+            border: 2px dashed #94a3b8;
+            border-radius: 10px;
+        }
+
+        input {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+
+        button {
+            background: #123b63;
+            color: white;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1d4f80;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #preview {
+            display: none;
+            max-width: 100%;
+            max-height: 300px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            overflow-wrap: anywhere;
+        }
+
+        .prediction {
+            font-size: 22px;
+            font-weight: bold;
+            color: #123b63;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Railway Defect Detection System</h1>
+        <p>Deep Learning Based Railway Track Image Classification</p>
+    </header>
+
+    <div class="container">
+
+        <h2>Upload Railway Track Image</h2>
+
+        <p>
+            Upload an image to identify whether it is
+            defective or non-defective.
+        </p>
+
+        <div class="upload-area">
+
+            <input
+                type="file"
+                id="imageInput"
+                accept=".jpg,.jpeg,.png,.bmp,.webp"
+            >
+
+            <img id="preview" alt="Selected railway image">
+
+            <br>
+
+            <button id="predictButton" onclick="predictImage()">
+                Predict Defect
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <footer>
+        Railway Defect Detection Project |
+        MobileNetV2 Transfer Learning
+    </footer>
+
+    <script>
+
+        const imageInput =
+            document.getElementById("imageInput");
+
+        const preview =
+            document.getElementById("preview");
+
+        const resultBox =
+            document.getElementById("result");
+
+        const predictButton =
+            document.getElementById("predictButton");
+
+
+        imageInput.addEventListener("change", function () {
+
+            const file = imageInput.files[0];
+
+            resultBox.style.display = "none";
+
+            if (!file) {
+                preview.style.display = "none";
+                return;
+            }
+
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+
+        });
+
+
+        async function predictImage() {
+
+            const file = imageInput.files[0];
+
+            if (!file) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            const formData = new FormData();
+
+            formData.append("file", file);
+
+            predictButton.disabled = true;
+            predictButton.textContent = "Analyzing Image...";
+
+            resultBox.style.display = "block";
+            resultBox.textContent = "Please wait...";
+
+            try {
+
+                const response = await fetch(
+                    "http://127.0.0.1:8000/predict",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        data.detail || "Prediction failed."
+                    );
+                }
+
+                const prediction = data.prediction;
+
+                const predictedClass =
+                    prediction.predicted_class || "Not available";
+
+                const confidence =
+                    prediction.confidence_percentage;
+
+                resultBox.replaceChildren();
+
+                const heading = document.createElement("h2");
+                heading.textContent = "Prediction Result";
+
+                const classText = document.createElement("p");
+                classText.className = "prediction";
+                classText.textContent = predictedClass;
+
+                const confidenceText = document.createElement("p");
+
+                confidenceText.textContent =
+                    confidence !== undefined
+                    ? "Confidence: " + confidence + "%"
+                    : "Confidence: Not available";
+
+                const probabilities = document.createElement("pre");
+
+                probabilities.textContent =
+                    "Class probabilities:\n" +
+                    JSON.stringify(
+                        prediction.class_probabilities || {},
+                        null,
+                        2
+                    );
+
+                resultBox.append(
+                    heading,
+                    classText,
+                    confidenceText,
+                    probabilities
+                );
+
+            } catch (error) {
+
+                resultBox.textContent =
+                    "Error: " + error.message;
+
+                resultBox.className = "error";
+
+            } finally {
+
+                predictButton.disabled = false;
+                predictButton.textContent = "Predict Defect";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

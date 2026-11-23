@@ -1,0 +1,3 @@
+Model,Status,Evaluation Type,Accuracy,Precision,Recall,F1 Score,Total Images
+MobileNetV2 Transfer Learning,Evaluated,Full processed dataset assessment,0.9157,0.9216368697471039,0.9157007376185459,0.915443203465824,949
+Custom CNN,Evaluation not available,Not evaluated,,,,,

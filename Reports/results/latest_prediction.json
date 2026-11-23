@@ -1,0 +1,10 @@
+{
+    "image_name": "131004959_171473721383413_8222187747086021011_n.jpg",
+    "predicted_class": "Defective",
+    "confidence_percentage": 98.92,
+    "class_probabilities": {
+        "Defective": 98.92,
+        "Non defective": 1.08
+    },
+    "prediction_time": "2026-11-21T15:25:45.143631"
+}

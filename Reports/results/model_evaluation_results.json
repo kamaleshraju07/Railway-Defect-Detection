@@ -1,0 +1,48 @@
+{
+    "project": "Railway Defect Detection",
+    "model": "MobileNetV2 Transfer Learning",
+    "evaluation_type": "Full processed dataset assessment",
+    "total_images": 949,
+    "accuracy": 0.9157,
+    "confusion_matrix": [
+        [
+            410,
+            68
+        ],
+        [
+            12,
+            459
+        ]
+    ],
+    "classification_report": {
+        "Defective": {
+            "precision": 0.9715639810426541,
+            "recall": 0.8577405857740585,
+            "f1-score": 0.9111111111111111,
+            "support": 478.0
+        },
+        "Non defective": {
+            "precision": 0.8709677419354839,
+            "recall": 0.9745222929936306,
+            "f1-score": 0.9198396793587175,
+            "support": 471.0
+        },
+        "accuracy": 0.9157007376185459,
+        "macro avg": {
+            "precision": 0.921265861489069,
+            "recall": 0.9161314393838446,
+            "f1-score": 0.9154753952349143,
+            "support": 949.0
+        },
+        "weighted avg": {
+            "precision": 0.9216368697471039,
+            "recall": 0.9157007376185459,
+            "f1-score": 0.915443203465824,
+            "support": 949.0
+        }
+    },
+    "class_names": [
+        "Defective",
+        "Non defective"
+    ]
+}

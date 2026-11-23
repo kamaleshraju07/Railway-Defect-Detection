@@ -1,0 +1,17 @@
+{
+    "CNN_Model": {
+        "Accuracy": 0.7407407407407407,
+        "Precision": 1.0,
+        "Recall": 0.7407407407407407,
+        "F1_Score": 0.8510638297872339
+    },
+    "Transfer_Learning_Model": {
+        "Accuracy": 0.9523809523809523,
+        "Precision": 1.0,
+        "Recall": 0.9523809523809523,
+        "F1_Score": 0.975609756097561
+    },
+    "Best_Model": "MobileNetV2 Transfer Learning",
+    "Best_Model_Accuracy": 0.9523809523809523,
+    "Best_Model_F1_Score": 0.975609756097561
+}

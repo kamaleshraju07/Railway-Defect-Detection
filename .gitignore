@@ -1,0 +1,38 @@
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Dataset - do not upload the complete dataset
+dataset/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Temporary and log files
+*.log
+*.tmp
+
+# Empty or invalid model artifacts
+Artifacts/best_model.pth
+Artifacts/model_config.json
+Artifacts/training_history.json
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code local settings
+.vscode/
